@@ -6,6 +6,6 @@ namespace WebAPI.Interfaces
     {
         Task<Output> Deduplicate(Int64[] data);
 
-        Task<Dictionary<Int64, Int64>> GetPairs(Int64[] data);
+        Task<OutputMap> GetPairs(Int64[] data);
     }
 }

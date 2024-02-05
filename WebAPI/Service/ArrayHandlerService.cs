@@ -7,7 +7,7 @@ namespace WebAPI.Service
 {
     public class ArrayHandlerService : IArrayHandler
     {
-        static int counter = 0;
+        static int idCcounter = 0;
         public async Task<Output> Deduplicate(Int64[] data)
         {
             HashSet<Int64> uniqueSet1 = new HashSet<Int64>();
@@ -29,10 +29,10 @@ namespace WebAPI.Service
                 }
             }
 
-            return new Output { Id = counter++, Operation = "deduplication", Data = result };
+            return new Output { Id = idCcounter++, Operation = "deduplication", Data = result };
         }
 
-        public async Task<Dictionary<Int64, Int64>> GetPairs(long[] data)
+        public async Task<OutputMap> GetPairs(long[] data)
         {
             //Dictionary<Int64, Int64> map = data.GroupBy(item => item).ToDictionary(group => group.Key, group => group.Count());
             Dictionary<Int64, Int64> map = new Dictionary<Int64, Int64>();
@@ -47,7 +47,7 @@ namespace WebAPI.Service
                     map[data[i]] = counter;
             }
 
-            return map;
+            return new OutputMap { Id = idCcounter++, Operation = "deduplication", Map = map };
         }
     }
 }
