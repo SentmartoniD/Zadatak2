@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Interfaces;
 using WebAPI.Models;
+using WebAPI.Service;
 
 namespace WebAPI.Controllers
 {
@@ -8,13 +10,21 @@ namespace WebAPI.Controllers
     [ApiController]
     public class DataController : ControllerBase
     {
+        private readonly IArrayHandler _arrayHandlerService;
+
+        public DataController(IArrayHandler arrayHandlerService)
+        {
+            _arrayHandlerService = arrayHandlerService;
+        }
+
         [HttpPost("upload")]
         public async Task<ActionResult> Upload([FromBody] Input input)
         {
             try {
                 if (input.Operation == "deduplicate")
                 {
-                    return Ok(new { Message = "Successfull upload!" });
+                    Output res = await _arrayHandlerService.Deduplicate(input.Data);
+                    return Ok(res);
                 }
                 else
                     return BadRequest(new { Error = "Invalid operation!" });

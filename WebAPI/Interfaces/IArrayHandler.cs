@@ -1,7 +1,9 @@
-﻿namespace WebAPI.Interfaces
+﻿using WebAPI.Models;
+
+namespace WebAPI.Interfaces
 {
     public interface IArrayHandler
     {
-        Int64[] Deduplicate(Int64 data);
+        Task<Output> Deduplicate(Int64[] data);
     }
 }
