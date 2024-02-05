@@ -24,11 +24,11 @@ namespace WebAPI.Controllers
                 if (input.Operation == "deduplicate")
                 {
                     Output res = await _arrayHandlerService.Deduplicate(input.Data);
-                    return Ok(res);
+                    return Ok(new { Output = res});
                 }
                 else if (input.Operation == "getPairs") {
-                    Dictionary<Int64, Int64> map = await _arrayHandlerService.GetPairs();
-                    return Ok();
+                    OutputMap res = await _arrayHandlerService.GetPairs(input.Data);
+                    return Ok(new { Output = res });
                 }
                 else
                     return BadRequest(new { Error = "Invalid operation!" });
