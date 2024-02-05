@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WebAPI.Interfaces;
 using WebAPI.Models;
 
@@ -29,6 +30,24 @@ namespace WebAPI.Service
             }
 
             return new Output { Id = counter++, Operation = "deduplication", Data = result };
+        }
+
+        public async Task<Dictionary<Int64, Int64>> GetPairs(long[] data)
+        {
+            //Dictionary<Int64, Int64> map = data.GroupBy(item => item).ToDictionary(group => group.Key, group => group.Count());
+            Dictionary<Int64, Int64> map = new Dictionary<Int64, Int64>();
+            int counter;
+            for (int i = 0; i < data.Length; i++) {
+                counter = 0;
+                for (int j = 0; j < data.Length; j++) {
+                    if (data[i] == data[j])
+                        counter++;
+                }
+                if (counter != 0)
+                    map[data[i]] = counter;
+            }
+
+            return map;
         }
     }
 }

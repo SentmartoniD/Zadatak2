@@ -26,6 +26,10 @@ namespace WebAPI.Controllers
                     Output res = await _arrayHandlerService.Deduplicate(input.Data);
                     return Ok(res);
                 }
+                else if (input.Operation == "getPairs") {
+
+                    return Ok();
+                }
                 else
                     return BadRequest(new { Error = "Invalid operation!" });
             }
