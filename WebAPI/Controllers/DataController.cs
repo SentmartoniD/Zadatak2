@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
                     return Ok(res);
                 }
                 else if (input.Operation == "getPairs") {
-
+                    Dictionary<Int64, Int64> map = await _arrayHandlerService.GetPairs();
                     return Ok();
                 }
                 else
