@@ -12,8 +12,12 @@ namespace WebAPI.Controllers
         public async Task<ActionResult> Upload([FromBody] Input input)
         {
             try {
-
-                return Ok(new { Message = "Successfull upload!" });
+                if (input.Operation == "deduplicate")
+                {
+                    return Ok(new { Message = "Successfull upload!" });
+                }
+                else
+                    return BadRequest(new { Error = "Invalid operation!" });
             }
             catch(Exception ex) { 
                 return StatusCode(500, new { Error = ex.Message});
