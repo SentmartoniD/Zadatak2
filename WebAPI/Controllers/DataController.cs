@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
                     return Ok(new { Output = res });
                 }
                 else
-                    return BadRequest(new { Error = "Invalid operation!" });
+                    return BadRequest(new { Error = $"Operation with name: {input.Operation} doesnt exist!" });
             }
             catch(Exception ex) { 
                 return StatusCode(500, new { Error = ex.Message});

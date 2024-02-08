@@ -9,9 +9,7 @@ namespace WebAPI.Service
     {
         public async Task<Output> Deduplicate(Int64[] data)
         {
-            // O(n^2)
             HashSet<Int64> uniqueSet1 = new HashSet<Int64>();
-            HashSet<Int64> uniqueSet2 = new HashSet<Int64>();
             int indeks = 0, counter = 0;
             // GET THE LENGHT OF THE NEW ARRAY, BY COUNTING THE UNIQUE VALUES
             foreach (Int64 element in data)
@@ -21,24 +19,16 @@ namespace WebAPI.Service
                     ++counter;
                 }
             }
+            uniqueSet1.Clear();
             // CREATE NEW ARRAY WITH THE UNIQUE VALUES
             Int64[] result = new Int64[counter];
             foreach (Int64 element in data)
             {
-                if (uniqueSet2.Add(element))
+                if (uniqueSet1.Add(element))
                 {
                     result[indeks++] = element;
                 }
             }
-            /*
-            int counter, uniqueCounter = 0;
-            for (int i = 0; i < data.Length; i++) {
-                counter = 0;
-                for(int j = 0; j < data.Length; j++)
-                {
-
-                }
-            }*/
             string id = DateTime.Now.Ticks.ToString() + Guid.NewGuid().ToString();
             return new Output { Id = id, Operation = "deduplication", Data = result };
         }
