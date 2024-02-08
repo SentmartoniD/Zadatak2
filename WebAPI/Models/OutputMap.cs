@@ -2,7 +2,7 @@
 {
     public class OutputMap
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Operation { get; set; }
 
