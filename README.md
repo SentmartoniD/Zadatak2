@@ -1,6 +1,6 @@
 # Zadatak 2
 
-## ASP .ENT CORE WEB API 6.0
+## ASP .NET CORE WEB API 6.0
 
 ### Napisati API upotrebom standardne biblioteke ili u frameworku po izboru koji ima sledece mogucnosti:
     * upload ruta
